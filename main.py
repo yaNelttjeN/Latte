@@ -6,19 +6,24 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QComboBox, QLabel, \
 from PyQt5 import uic
 from PyQt5.QtCore import Qt
 
+import coffee_ui
+from main_ui import Ui_Form
+
 
 class Window(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('main.ui', self)
+        ui = Ui_Form()
+        ui.setupUi(self)
+        self.add, self.view = ui.get_objects()
         self.setFixedSize(self.width(), self.height())
-        self.db = sqlite3.connect('coffee.sqlite')
+        self.db = sqlite3.connect('data/coffee.sqlite')
         self.curs = self.db.cursor()
         self.update_view()
         self.add.clicked.connect(self.run_edit)
         self.selected = None
         self.view.itemSelectionChanged.connect(self.select)
-    
+
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_F5:
             self.update_view()
@@ -85,7 +90,9 @@ class Window(QMainWindow):
 class EditForm(QDialog):
     def __init__(self, parent=None, params=None):
         super().__init__(parent, Qt.WindowCloseButtonHint)
-        uic.loadUi('addEditCoffeeForm.ui', self)
+        ui = coffee_ui.Ui_Form()
+        ui.setupUi(self)
+        self.p1, self.p2, self.p3, self.p4, self.p5, self.p6, self.save = ui.get_objects()
         self.edited = False
         self.p3.itemSelectionChanged.connect(self.select)
         if params:
