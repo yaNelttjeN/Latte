@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>729</width>
-    <height>549</height>
+    <height>598</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,9 +16,9 @@
   <widget class="QPushButton" name="add">
    <property name="geometry">
     <rect>
-     <x>590</x>
+     <x>480</x>
      <y>550</y>
-     <width>211</width>
+     <width>251</width>
      <height>51</height>
     </rect>
    </property>
@@ -28,7 +28,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Добавить новый кофе</string>
+    <string>Добавить/изменить кофе</string>
    </property>
   </widget>
   <widget class="QTableWidget" name="view">
